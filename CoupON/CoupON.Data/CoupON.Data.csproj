@@ -40,6 +40,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WilliamHillFixtureOdds.cs" />
+    <Compile Include="WilliamHillFixtures.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoupON.Interfaces\CoupON.Interfaces.csproj">
+      <Project>{a2651f31-b55b-4804-a3ba-f71ddc47b9e2}</Project>
+      <Name>CoupON.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -40,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataFetchers\IWilliamHillDataFetcher.cs" />
+    <Compile Include="DataParsers\IWilliamHillDataParser.cs" />
+    <Compile Include="Data\IFixture.cs" />
+    <Compile Include="Data\IFixtureOdds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
