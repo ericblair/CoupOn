@@ -36,48 +36,11 @@ namespace CoupON.DataParsers
                 var leagueName = leagueNode.Attribute("name").Value;
                 var leagueFixtures = getFixturesForBetType(leagueNode, _matchBettingNodeAttributePostFixString);
 
-                foreach (var fixture in leagueFixtures)
+                foreach (var fixtureNode in leagueFixtures)
                 {
-                    var match = fixture.Attribute("name").ToString().Split('"')[1].Split('-')[0].Trim();
-                    var stringSeparator = new string[] { " v " };
-                    var homeTeam = match.Split(stringSeparator, StringSplitOptions.None)[0].Trim();
-                    var awayTeam = match.Split(stringSeparator, StringSplitOptions.None)[1].Trim();
+                    var fixtureData = extractFixtureData(fixtureNode, leagueName);
 
-                    var date = getDateOrTimeFromXmlAttribute(fixture, "date");
-                    var time = getDateOrTimeFromXmlAttribute(fixture, "time");
-
-                    var williamHillFixture = new WilliamHillFixture();
-                    williamHillFixture.League = leagueName;
-                    williamHillFixture.MatchDateTime = DateTime.Parse(date + " " + time);
-                    williamHillFixture.HomeTeam = homeTeam;
-                    williamHillFixture.AwayTeam = awayTeam;
-
-                    foreach (var oddsNode in fixture.Elements("participant"))
-                    {
-                        var prediction = oddsNode.Attribute("name").Value;
-                        var fractionalOdds = oddsNode.Attribute("odds").Value;
-                        var decimalOdds = oddsNode.Attribute("oddsDecimal").Value;
-
-                        var williamHillFixtureOdds = new WilliamHillFixtureOdds();
-                        williamHillFixtureOdds.Prediction = prediction;
-                        williamHillFixtureOdds.FractionalOdds = fractionalOdds;
-                        williamHillFixtureOdds.DecimalOdds = decimalOdds;
-
-                        if (williamHillFixtureOdds.Prediction == williamHillFixture.HomeTeam)
-                        {
-                            williamHillFixture.HomeOdds = williamHillFixtureOdds;
-                        }
-                        else if (williamHillFixtureOdds.Prediction == williamHillFixture.AwayTeam)
-                        {
-                            williamHillFixture.AwayOdds = williamHillFixtureOdds;
-                        }
-                        else
-                        {
-                            williamHillFixture.DrawOdds = williamHillFixtureOdds;
-                        }
-                    }
-
-                    fixtures.Add(williamHillFixture);
+                    fixtures.Add(fixtureData);
                 }
             }
 
@@ -100,11 +63,100 @@ namespace CoupON.DataParsers
             return fixtures;
         }
 
+        private WilliamHillFixture extractFixtureData(XElement fixtureNode, string leagueName)
+        {
+            var williamHillFixture = new WilliamHillFixture();
+            williamHillFixture.League = leagueName;
+            williamHillFixture.MatchDateTime = extractMatchDateTime(fixtureNode);
+            williamHillFixture.HomeTeam = extractTeamName(fixtureNode, "Home");
+            williamHillFixture.AwayTeam = extractTeamName(fixtureNode, "Away");
+
+            williamHillFixture = extractFixtureOdds(fixtureNode, williamHillFixture);
+
+            return williamHillFixture;
+        }
+
+        private WilliamHillFixture extractFixtureOdds(XElement fixtureNode, WilliamHillFixture fixtureData)
+        {
+            foreach (var oddsNode in fixtureNode.Elements("participant"))
+            {
+                var williamHillFixtureOdds = new WilliamHillFixtureOdds();
+                williamHillFixtureOdds.Prediction = extractPrediction(oddsNode);
+                williamHillFixtureOdds.FractionalOdds = extractOdds(oddsNode, "Fractional");
+                williamHillFixtureOdds.DecimalOdds = extractOdds(oddsNode, "Decimal");
+
+                if (williamHillFixtureOdds.Prediction == fixtureData.HomeTeam)
+                {
+                    fixtureData.HomeOdds = williamHillFixtureOdds;
+                }
+                else if (williamHillFixtureOdds.Prediction == fixtureData.AwayTeam)
+                {
+                    fixtureData.AwayOdds = williamHillFixtureOdds;
+                }
+                else
+                {
+                    fixtureData.DrawOdds = williamHillFixtureOdds;
+                }
+            }
+
+            return fixtureData;
+        }
+
+        private DateTime extractMatchDateTime(XElement fixtureNode)
+        {
+            var date = getDateOrTimeFromXmlAttribute(fixtureNode, "date");
+            var time = getDateOrTimeFromXmlAttribute(fixtureNode, "time");
+
+            return DateTime.Parse(date + " " + time);
+        }
+
         private string getDateOrTimeFromXmlAttribute(XElement fixtureElement, string attribute)
         {
             var dateOrTime = fixtureElement.Attribute(attribute).ToString().Split('"')[1];
 
             return dateOrTime;
+        }
+
+        private string extractTeamName(XElement fixtureNode, string homeOrAway)
+        {
+            var match = fixtureNode.Attribute("name").ToString().Split('"')[1].Split('-')[0].Trim();
+            var stringSeparator = new string[] { " v " };
+
+            string teamName = null;
+
+            if (homeOrAway == "Home")
+            {
+                teamName = match.Split(stringSeparator, StringSplitOptions.None)[0].Trim();
+            }
+            else if (homeOrAway == "Away")
+            {
+                teamName = match.Split(stringSeparator, StringSplitOptions.None)[1].Trim();
+            }
+
+            return teamName;
+        }
+
+        private string extractPrediction(XElement oddsNode)
+        {
+            var prediction = oddsNode.Attribute("name").Value;
+
+            return prediction;
+        }
+
+        private string extractOdds(XElement oddsNode, string fractionalOrDecimal)
+        {
+            string odds = null;
+
+            if (fractionalOrDecimal == "Fractional")
+            {
+                odds = oddsNode.Attribute("odds").Value;
+            }
+            else if (fractionalOrDecimal == "Decimal")
+            {
+                odds = oddsNode.Attribute("oddsDecimal").Value;
+            }
+
+            return odds;
         }
     }
 }
