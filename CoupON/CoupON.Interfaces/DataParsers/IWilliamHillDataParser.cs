@@ -12,6 +12,6 @@ namespace CoupON.Interfaces.DataParsers
 {
     public interface IWilliamHillDataParser
     {
-        List<IFixture> ExtractMatchBettingData(XDocument dataFeed);
+        List<IFixture> ExtractMatchBettingData();
     }
 }

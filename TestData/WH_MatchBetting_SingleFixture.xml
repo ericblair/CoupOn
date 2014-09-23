@@ -1,0 +1,22 @@
+<!--  OXi dbPublish -->
+<!--
+ Copyright (c) 2001, 2002, 2003 Orbis Technology Ltd. All rights reserved.
+-->
+<oxip version="7.1" created="2014-09-23 23:37:16" lastMsgId="" requestTime="0.7745">
+<response request="getHierarchyByMarketType" code="001" message="success" debug="">
+<williamhill>
+<class id="1" name="UK Football" maxRepDate="2014-09-22" maxRepTime="13:45:31">
+<type id="295" name="English Premier League" url="http://sports.williamhill.com/bet/betting/t/295" lastUpdateDate="2014-09-19" lastUpdateTime="09:54:24">
+<market id="199803984" name="Liverpool v Everton - Match Betting" url="http://sports.williamhill.com/bet/en-gb/betting/e/6564628/Liverpool%2dv%2dEverton" date="2014-09-27" time="12:45:00" betTillDate="2014-09-27" betTillTime="12:45:00" lastUpdateDate="2014-09-21" lastUpdateTime="19:16:28">
+<participant name="Draw" id="684542483" odds="11/4" oddsDecimal="3.75" lastUpdateDate="2014-09-21" lastUpdateTime="20:40:45" handicap=""/>
+<participant name="Everton" id="684542484" odds="16/5" oddsDecimal="4.20" lastUpdateDate="2014-09-21" lastUpdateTime="20:40:12" handicap=""/>
+<participant name="Liverpool" id="684542482" odds="4/5" oddsDecimal="1.80" lastUpdateDate="2014-09-21" lastUpdateTime="20:40:45" handicap=""/>
+</market>
+</type>
+</class>
+<disclaimer>
+WHG (International) Ltd ("We/Us") of 6/1 Waterport Place, Gibraltar, owns the XML Feed Website ( the "Website") relating to information contained on its main trading website. By using the Website You agree to these full Terms of Use available at http://developer.williamhill.com
+</disclaimer>
+</williamhill>
+</response>
+</oxip>

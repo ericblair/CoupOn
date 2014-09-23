@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoupON.Data", "CoupON.Data\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoupON.Interfaces", "CoupON.Interfaces\CoupON.Interfaces.csproj", "{A2651F31-B55B-4804-A3BA-F71DDC47B9E2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9650D9A3-99FA-43EB-A940-D5474694566E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoupON.DataFetchers.Tests", "CoupON.DataFetchers.Tests\CoupON.DataFetchers.Tests.csproj", "{A47679D2-7D85-480C-BCDC-3A06C327300A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoupON.DataParsers.Tests", "CoupON.DataParsers.Tests\CoupON.DataParsers.Tests.csproj", "{9959DDEA-5C15-4F33-B605-975F4FB0F39F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,8 +45,20 @@ Global
 		{A2651F31-B55B-4804-A3BA-F71DDC47B9E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2651F31-B55B-4804-A3BA-F71DDC47B9E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2651F31-B55B-4804-A3BA-F71DDC47B9E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A47679D2-7D85-480C-BCDC-3A06C327300A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A47679D2-7D85-480C-BCDC-3A06C327300A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A47679D2-7D85-480C-BCDC-3A06C327300A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A47679D2-7D85-480C-BCDC-3A06C327300A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9959DDEA-5C15-4F33-B605-975F4FB0F39F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9959DDEA-5C15-4F33-B605-975F4FB0F39F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9959DDEA-5C15-4F33-B605-975F4FB0F39F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9959DDEA-5C15-4F33-B605-975F4FB0F39F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A47679D2-7D85-480C-BCDC-3A06C327300A} = {9650D9A3-99FA-43EB-A940-D5474694566E}
+		{9959DDEA-5C15-4F33-B605-975F4FB0F39F} = {9650D9A3-99FA-43EB-A940-D5474694566E}
 	EndGlobalSection
 EndGlobal

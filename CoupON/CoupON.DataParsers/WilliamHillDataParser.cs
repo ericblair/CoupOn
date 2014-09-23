@@ -24,7 +24,7 @@ namespace CoupON.DataParsers
         // String used to identify match betting odds from others like first scorer etc
         private const string _matchBettingNodeAttributePostFixString = "- Match Betting";
 
-        public List<IFixture> ExtractMatchBettingData(XDocument dataFeed)
+        public List<IFixture> ExtractMatchBettingData()
         {
             var bookieData = _dataFetcher.GetUkFootballMatchResultFeed();
 
