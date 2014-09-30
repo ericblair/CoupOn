@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoupON.DataFetchers.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoupON.DataParsers.Tests", "CoupON.DataParsers.Tests\CoupON.DataParsers.Tests.csproj", "{9959DDEA-5C15-4F33-B605-975F4FB0F39F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoupON.Repositories.Tests", "CoupON.Repositories.Tests\CoupON.Repositories.Tests.csproj", "{F327A5F3-034D-4DF0-967A-49BE52B77467}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{9959DDEA-5C15-4F33-B605-975F4FB0F39F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9959DDEA-5C15-4F33-B605-975F4FB0F39F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9959DDEA-5C15-4F33-B605-975F4FB0F39F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F327A5F3-034D-4DF0-967A-49BE52B77467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F327A5F3-034D-4DF0-967A-49BE52B77467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F327A5F3-034D-4DF0-967A-49BE52B77467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F327A5F3-034D-4DF0-967A-49BE52B77467}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,5 +66,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A47679D2-7D85-480C-BCDC-3A06C327300A} = {9650D9A3-99FA-43EB-A940-D5474694566E}
 		{9959DDEA-5C15-4F33-B605-975F4FB0F39F} = {9650D9A3-99FA-43EB-A940-D5474694566E}
+		{F327A5F3-034D-4DF0-967A-49BE52B77467} = {9650D9A3-99FA-43EB-A940-D5474694566E}
 	EndGlobalSection
 EndGlobal

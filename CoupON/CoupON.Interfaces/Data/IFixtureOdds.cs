@@ -11,5 +11,7 @@ namespace CoupON.Interfaces.Data
         string Prediction { get; set; }
         string FractionalOdds { get; set; }
         string DecimalOdds { get; set; }
+
+        IFixture Fixture { get; set; }
     }
 }

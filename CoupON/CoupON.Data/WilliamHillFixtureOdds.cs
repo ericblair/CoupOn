@@ -13,5 +13,7 @@ namespace CoupON.Data
         public string Prediction { get; set; }
         public string FractionalOdds { get; set; }
         public string DecimalOdds { get; set; }
+
+        public virtual IFixture Fixture { get; set; }
     }
 }
