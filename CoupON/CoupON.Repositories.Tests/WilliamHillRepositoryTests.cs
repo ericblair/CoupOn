@@ -17,7 +17,7 @@ namespace CoupON.Repositories.Tests
     [TestClass]
     public class WilliamHillRepositoryTests
     {
-        [TestMethod]
+        //[TestMethod]
         public void InsertOrUpdateFixtures_SingleFixture_DetailsSaved()
         {
             var homeTeam = "Chelsea";
@@ -56,13 +56,17 @@ namespace CoupON.Repositories.Tests
             testFixtures.Add(testFixture);
 
             var mockContext = new Mock<CoupONContext>();
-            //mockContext.Setup(x => x.WilliamHillFixtures.Add(It.IsAny<WilliamHillFixture>()));
+            //mockContext.Setup(x => x.WilliamHillFixtures.Add(testFixture));
+            //mockContext.Setup(x => x.Entry(testFixture).GetDatabaseValues());
             mockContext.Setup(x => x.WilliamHillFixtures.Add(It.IsAny<WilliamHillFixture>()));
+            mockContext.Setup(x => x.WilliamHillFixtureOdds.Add(It.IsAny<WilliamHillFixtureOdds>()));
 
             var testRepo = new WilliamHillRepository(mockContext.Object);
 
             // Test
             testRepo.InsertOrUpdateFixtures(testFixtures);
+
+            mockContext.Verify(x => x.WilliamHillFixtures.Add(testFixture), Times.Once);
         }
 
         [TestMethod]
