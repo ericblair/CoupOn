@@ -64,6 +64,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoupON.DataFetchers\CoupON.DataFetchers.csproj">
+      <Project>{334d3793-ce62-4f86-bd8d-d962e6e7e491}</Project>
+      <Name>CoupON.DataFetchers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoupON.DataParsers\CoupON.DataParsers.csproj">
+      <Project>{bb72c2fa-820d-4aa4-9b47-026efcfc46ed}</Project>
+      <Name>CoupON.DataParsers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CoupON.Data\CoupON.Data.csproj">
       <Project>{00a42a21-baed-41dd-b0d1-a4b29328a80b}</Project>
       <Name>CoupON.Data</Name>

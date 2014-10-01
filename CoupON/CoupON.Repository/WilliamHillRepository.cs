@@ -25,19 +25,17 @@ namespace CoupON.Repository
         {
             foreach (var fixture in fixtures)
             {
-                var fixtureRecord = InsertOrUpdateFixture(fixture);
+                var fixtureId = InsertOrUpdateFixture(fixture);
 
-                fixtureRecord.HomeOdds = InsertOrUpdateFixtureOdds(fixtureRecord, fixture.HomeOdds);
-                fixtureRecord.AwayOdds = InsertOrUpdateFixtureOdds(fixtureRecord, fixture.AwayOdds);
-                fixtureRecord.DrawOdds = InsertOrUpdateFixtureOdds(fixtureRecord, fixture.DrawOdds);
-
-                _context.WilliamHillFixtures.Add(fixtureRecord);
+                InsertOrUpdateFixtureOdds(fixtureId, fixture.HomeOdds);
+                InsertOrUpdateFixtureOdds(fixtureId, fixture.AwayOdds);
+                InsertOrUpdateFixtureOdds(fixtureId, fixture.DrawOdds);
             }
 
             _context.SaveChanges();
         }
 
-        public WilliamHillFixture InsertOrUpdateFixture(IFixture fixture)
+        public int InsertOrUpdateFixture(IFixture fixture)
         {
             var fixtureRecord = new WilliamHillFixture
             {
@@ -47,21 +45,25 @@ namespace CoupON.Repository
                 AwayTeam = fixture.AwayTeam
             };
 
-            return fixtureRecord;
+            _context.WilliamHillFixtures.Add(fixtureRecord);
+            _context.SaveChanges();
+            _context.Entry(fixtureRecord).GetDatabaseValues();
+
+            return fixtureRecord.Id;
         }
 
-        public WilliamHillFixtureOdds InsertOrUpdateFixtureOdds(IFixture fixture, IFixtureOdds fixtureOdds)
+        public void InsertOrUpdateFixtureOdds(int fixtureId, IFixtureOdds fixtureOdds)
         {
             var odds = new WilliamHillFixtureOdds
             {
                 Prediction = fixtureOdds.Prediction,
                 FractionalOdds = fixtureOdds.FractionalOdds,
                 DecimalOdds = fixtureOdds.DecimalOdds,
-                Fixture = fixture
+                FixtureId = fixtureId,
+                Fixture = _context.WilliamHillFixtures.First(x => x.Id == fixtureId)
             };
 
-            //_context.WilliamHillFixtureOdds.Add(odds);
-            return odds;
+            _context.WilliamHillFixtureOdds.Add(odds);
         }
     }
 }

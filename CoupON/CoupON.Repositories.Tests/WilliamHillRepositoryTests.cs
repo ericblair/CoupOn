@@ -7,6 +7,8 @@ using Moq;
 
 using CoupON.Data;
 using CoupON.Data.Entities;
+using CoupON.DataFetchers;
+using CoupON.DataParsers;
 using CoupON.Interfaces.Data;
 using CoupON.Repository;
 
@@ -50,16 +52,31 @@ namespace CoupON.Repositories.Tests
                 }
             };
 
+            var testFixtures = new List<IFixture>();
+            testFixtures.Add(testFixture);
+
             var mockContext = new Mock<CoupONContext>();
+            //mockContext.Setup(x => x.WilliamHillFixtures.Add(It.IsAny<WilliamHillFixture>()));
             mockContext.Setup(x => x.WilliamHillFixtures.Add(It.IsAny<WilliamHillFixture>()));
 
             var testRepo = new WilliamHillRepository(mockContext.Object);
 
             // Test
-            var testFixtures = new List<IFixture>();
-            testFixtures.Add(testFixture);
-
             testRepo.InsertOrUpdateFixtures(testFixtures);
+        }
+
+        [TestMethod]
+        public void IntegrationTest()
+        {
+            var dataFetcher = new WilliamHillDataFetcher();
+
+            var dataParser = new WilliamHillDataParser(dataFetcher);
+
+            var fixtures = dataParser.ExtractMatchBettingData();
+
+            var context = new CoupONContext();
+            var repository = new WilliamHillRepository(context);
+            repository.InsertOrUpdateFixtures(fixtures);
         }
     }
 }
