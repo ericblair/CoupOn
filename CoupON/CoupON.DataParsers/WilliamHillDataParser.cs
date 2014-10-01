@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -119,7 +120,10 @@ namespace CoupON.DataParsers
 
         private string extractTeamName(XElement fixtureNode, string homeOrAway)
         {
-            var match = fixtureNode.Attribute("name").ToString().Split('"')[1].Split('-')[0].Trim();
+            var matchAttribute = fixtureNode.Attribute("name").Value;
+            var matchAttDecoded = WebUtility.HtmlDecode(matchAttribute);
+            var match = matchAttDecoded.Split('-')[0].Trim();
+
             var stringSeparator = new string[] { " v " };
 
             string teamName = null;
@@ -138,7 +142,7 @@ namespace CoupON.DataParsers
 
         private string extractPrediction(XElement oddsNode)
         {
-            var prediction = oddsNode.Attribute("name").Value;
+            var prediction = WebUtility.HtmlDecode(oddsNode.Attribute("name").Value);
 
             return prediction;
         }
