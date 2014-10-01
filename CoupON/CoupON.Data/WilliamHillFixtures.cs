@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,8 @@ namespace CoupON.Data
 {
     public class WilliamHillFixture : IFixture
     {
+        [Key]
+        public int Id { get; set; }
         public string League { get; set; }
         public DateTime MatchDateTime { get; set; }
         public string HomeTeam { get; set; }

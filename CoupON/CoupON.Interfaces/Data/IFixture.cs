@@ -8,6 +8,7 @@ namespace CoupON.Interfaces.Data
 {
     public interface IFixture
     {
+        int Id { get; set; }
         string League { get; set; }
         DateTime MatchDateTime { get; set; }
         string HomeTeam { get; set; }
